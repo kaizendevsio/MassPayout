@@ -27,8 +27,14 @@
     <script>
         function saveTxs(x) {
             var txs = JSON.parse(x);
-            var existingTxs = JSON.parse(localStorage.txs);
-            localStorage.txs = JSON.stringify(existingTxs.concat(txs));
+            var existingTxs
+            if(localStorage.txs != undefined){
+                var existingTxs = JSON.parse(localStorage.txs);
+                localStorage.txs = JSON.stringify(existingTxs.concat(txs));
+            }
+            else {
+                localStorage.txs = JSON.stringify(txs);
+            }
         }
         function getTxs(x) {
              return localStorage.txs;
